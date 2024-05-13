@@ -80,10 +80,11 @@ public class Model2Executor {
     public float[][] preprocess(String question, String context) {
         BertPreprocessor preprocessor = new BertPreprocessor();
         int[] inputIds = preprocessor.tokenizeAndConvertToInput(question, context);
-        float[][] attentionMask = preprocessor.generateAttentionMask(inputIds);
+        float[][] inputAsFloat = new float[1][inputIds.length];  // Assuming your model expects a batch dimension
+        for (int i = 0; i < inputIds.length; i++) {
+            inputAsFloat[0][i] = inputIds[i];
+        }
+        return inputAsFloat;
+}
 
-    // 根据你的模型输入需求，可能还需要其他步骤
-    // 返回适当格式的数据
-        return new float[][] {Arrays.stream(inputIds).asDoubleStream().toArray()};
-    }
 }
