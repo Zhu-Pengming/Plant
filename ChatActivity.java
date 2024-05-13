@@ -59,6 +59,9 @@ public class ChatActivity extends AppCompatActivity {
     ImageView imgCamera;
     private static final String FOLDER_NAME = "MyAppImages";
 
+    private static final int OPEN_GALLERY_REQUEST_CODE = 102;
+
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,37 +94,49 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    private void sendMessage(String userMsg, String userImage) {
-        // Check if there is text or image to send
-        if (userMsg.isEmpty() && userImage == null) {
+    private void sendMessage(String userMsg, String userImageUri) {
+        if (userMsg.isEmpty() && userImageUri == null) {
             Toast.makeText(this, "Please enter a message or select an image.", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        // Add the message to the RecyclerView
-        messageModalArrayList.add(new Message(userMsg, userImage, USER_KEY));
+    
+        messageModalArrayList.add(new Message(userMsg, userImageUri, USER_KEY));
         messageRVAdapter.notifyDataSetChanged();
         chatsRV.scrollToPosition(messageModalArrayList.size() - 1);
-
-        // Process and send the message
-        if (userImage != null) {
-            // Combine text and image processing
-            processImageAndText(userImage,uerMsg);
+    
+        if (userImageUri != null) {
+            // Load image as Bitmap from URI
+            Bitmap image = loadImageFromUri(Uri.parse(userImageUri));
+            if (image != null) {
+                if (!userMsg.isEmpty()) {
+                    processImageAndText(image, userMsg);
+                } else {
+                    processImageOnly(image);
+                }
+            }
         } else {
-            // Only text
             processTextOnly(userMsg);
         }
         userMsgEdt.setText(""); // Clear the text input after sending
     }
 
+    private Bitmap loadImageFromUri(Uri uri) {
+        try {
+            return MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     private void processImageOnly(Bitmap image) {
         // Image processing logic
     }
-
+    
     private void processImageAndText(Bitmap image, String text) {
         // Combined image and text processing logic
     }
-
+    
     private void processTextOnly(String text) {
         // Text processing logic
         JSONObject messagePayload = new JSONObject();
@@ -130,13 +145,13 @@ public class ChatActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+    
         String apiUrl = "https://your-api-url.com/nlp";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, apiUrl, messagePayload,
                 response -> {
                     try {
                         String botResponse = response.getString("reply");
-                        messageModalArrayList.add(new Message(botResponse, BOT_KEY));
+                        messageModalArrayList.add(new Message(botResponse, null, BOT_KEY));
                         messageRVAdapter.notifyDataSetChanged();
                         chatsRV.scrollToPosition(messageModalArrayList.size() - 1);
                     } catch (JSONException e) {
@@ -146,12 +161,10 @@ public class ChatActivity extends AppCompatActivity {
             error.printStackTrace();
             Toast.makeText(ChatActivity.this, "Failed to send message", Toast.LENGTH_SHORT).show();
         });
-
-        //NLP Model2
-
-
+    
         mRequestQueue.add(jsonObjectRequest);
     }
+
     public void showPopupWindow(View anchorView) {
     // 加载布局文件
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -175,11 +188,16 @@ public class ChatActivity extends AppCompatActivity {
             btnCamera.setOnClickListener(view -> {
                  Intent iCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                  startActivityForResult(iCamera, CAMERA_REQ_CODE);
-                popupWindow.dismiss();
+                 
+                 popupWindow.dismiss();
             });
 
             btnGallery.setOnClickListener(view -> {
     // 处理相册事件
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent, OPEN_GALLERY_REQUEST_CODE);
+                
                 popupWindow.dismiss();
             });
 
@@ -195,35 +213,49 @@ public class ChatActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            if (requestCode == CAMERA_REQ_CODE) {
-                if (data != null) {
-                    Bitmap img = (Bitmap) data.getExtras().get("data");
-                    imgCamera.setImageBitmap(img);
-
-                    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-                    File folder = new File(Environment.getExternalStorageDirectory(), FOLDER_NAME);
-                    if (!folder.exists()) {
-                        folder.mkdirs();
+            switch (requestCode) {
+                case CAMERA_REQ_CODE:
+                    if (data != null) {
+                        handleCameraResult(data);
                     }
-                    String fileName = timeStamp + ".jpg";
-                    ContentValues values = new ContentValues();
-                    values.put(MediaStore.Images.Media.DISPLAY_NAME, fileName);
-                    values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
-                    values.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/" + FOLDER_NAME);
-                    uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                    try {
-                        OutputStream outputStream = getContentResolver().openOutputStream(uri);
-                        if (outputStream != null) {
-                            img.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);
-                            outputStream.close();
-                            Toast.makeText(this, "Image saved successfully", Toast.LENGTH_SHORT).show();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+                    break;
+                case OPEN_GALLERY_REQUEST_CODE:
+                    handleGalleryResult(data);
+                    break;
             }
         }
+    }
+
+    private void handleCameraResult(Intent data) {
+        Bitmap img = (Bitmap) data.getExtras().get("data");
+        imgCamera.setImageBitmap(img);
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        File folder = new File(Environment.getExternalStorageDirectory(), FOLDER_NAME);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        String fileName = timeStamp + ".jpg";
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.DISPLAY_NAME, fileName);
+        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+        values.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/" + FOLDER_NAME);
+        uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        try {
+            OutputStream outputStream = getContentResolver().openOutputStream(uri);
+            if (outputStream != null) {
+                img.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);
+                outputStream.close();
+                Toast.makeText(this, "Image saved successfully", Toast.LENGTH_SHORT).show();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void handleGalleryResult(Intent data) {
+        uri = data.getData();
+        // Additional logic to handle the selected image
     }
 
 }
