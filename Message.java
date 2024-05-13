@@ -2,17 +2,26 @@ package com.example.npm;
 
 public class Message {
 
-    // string to store our message and sender
+    // String to store our message and sender
     private String message;
     private String sender;
+    private String imageUri; // URI to store the path of the image associated with the message
 
-    // constructor.
-    public Message(String message, String sender) {
+    // Constructor for messages with text and image
+    public Message(String message, String imageUri, String sender) {
         this.message = message;
+        this.imageUri = imageUri;
         this.sender = sender;
     }
 
-    // getter and setter methods.
+    // Constructor for messages with text only
+    public Message(String message, String sender) {
+        this.message = message;
+        this.sender = sender;
+        this.imageUri = null; // No image associated
+    }
+
+    // Getter and setter methods
     public String getMessage() {
         return message;
     }
@@ -28,5 +37,12 @@ public class Message {
     public void setSender(String sender) {
         this.sender = sender;
     }
-}
 
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
+}
