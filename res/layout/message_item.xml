@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="405dp"
+    android:layout_height="272dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="274dp"
+        android:background="@color/white"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/idIVUser"
+            android:layout_width="37dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/user" />
+
+        <TextView
+            android:id="@+id/idTVUser"
+            android:layout_width="323dp"
+            android:layout_height="85dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="2dp"
+            android:text="User message"
+            android:textColor="@color/black"
+            android:textIsSelectable="true" />
+
+        <com.example.npm.BubbleImageView
+            android:id="@+id/idIVUser2"
+            android:layout_width="200dp"
+            android:layout_height="180dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="143dp"
+            android:layout_marginBottom="88dp" />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
