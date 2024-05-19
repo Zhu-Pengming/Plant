@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="start"
+    android:layout_margin="5dp"
+    android:elevation="8dp"
+    android:backgroundTint="#00FFFFFF">
+
+    <RelativeLayout
+        android:layout_width="389dp"
+        android:layout_height="115dp"
+        android:orientation="horizontal">
+
+        <!--below widget is for image of bot-->
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="340dp"
+            android:layout_marginBottom="70dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bot" />
+
+        <com.example.npm.AutoHeightTextView
+            android:id="@+id/idTVBot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="235dp"
+            android:layout_marginBottom="85dp"
+            android:text="Bot message"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
