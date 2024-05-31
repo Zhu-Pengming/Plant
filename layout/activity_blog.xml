@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".BlogActivity">
+
+    <TextView
+        android:id="@+id/blog_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="685dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="请先左滑" />
+
+    <View
+        android:id="@+id/blog_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="740dp"
+        android:background="@color/black" />
+
+    <ImageView
+        android:id="@+id/blog_logo"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="105dp"
+        android:layout_marginBottom="750dp"
+        app:srcCompat="@drawable/blog_logo" />
+
+    <ImageView
+        android:id="@+id/blogTips"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="243dp"
+        android:layout_marginBottom="680dp"
+        app:srcCompat="@drawable/tips" />
+
+    <FrameLayout
+        android:id="@+id/container_blog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+
+    </FrameLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/gallery"
+        android:layout_width="380dp"
+        android:layout_height="600dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="45dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/blog_return"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="331dp"
+        android:layout_marginBottom="750dp"
+        app:srcCompat="@drawable/blog_back" />
+
+</RelativeLayout>

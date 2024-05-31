@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ChatActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/edge"
+            android:theme="@style/CustomActionBar"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+
+
+            <ImageView
+                android:id="@+id/chat_return"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="340dp"
+                android:layout_marginBottom="9dp"
+                app:srcCompat="@drawable/chat_back" />
+
+            <ImageView
+                android:id="@+id/chat_setting"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/chat_setting" />
+
+            <WebView
+                android:id="@+id/tes"
+                android:layout_width="190dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="110dp"
+                android:layout_marginBottom="13dp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/idRVChats"
+                android:layout_width="match_parent"
+                android:layout_height="705dp"
+                android:layout_above="@id/idLLMessage"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/chat_background" />
+
+
+
+            <LinearLayout
+                android:id="@+id/idLLMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:background="@drawable/edge_1"
+                android:weightSum="5">
+
+                <!--edit text to enter message-->
+
+
+                <EditText
+                    android:id="@+id/idEdtMessage"
+                    android:layout_width="275dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="@drawable/card_border"
+                    android:hint="Type message here"
+                    android:textColor="@color/black"
+                    android:inputType="textShortMessage"
+                    android:paddingStart="10dp"
+                    android:textAlignment="gravity"
+                    android:textSize="17sp"
+                    tools:ignore="RtlSymmetry" />
+
+                <!--button to send message-->
+                <ImageView
+                    android:id="@+id/idIBSend"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_send" />
+
+                <ImageView
+                    android:id="@+id/idIBPicture"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_picture" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
