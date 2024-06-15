@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Switch</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #FFFFFF;
+        }
+
+        .switch {
+            --input-focus: #2d8cf0;
+            --font-color: #323232;
+            --font-color-sub: #666;
+            --bg-color: #fff;
+            --bg-color-alt: #666;
+            --main-color: #323232;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30vw;  /* Changed from 60vw */
+            width: 50vw;  /* Changed from 100vw */
+            height: 20vw;  /* Changed from 40vw */
+        }
+
+        .toggle {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            box-sizing: border-box;
+            border-radius: 5vw;  /* Changed from 10vw */
+            border: 2vw solid var(--main-color);  /* Changed from 4vw */
+            box-shadow: 4vw 4vw var(--main-color);  /* Changed from 8vw 8vw */
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--bg-color);
+            transition: 0.3s;
+        }
+
+        .slider:before {
+            box-sizing: border-box;
+            position: absolute;
+            content: "";
+            height: 20vw;  /* Changed from 40vw */
+            width: 20vw;  /* Changed from 40vw */
+            border: 2vw solid var(--main-color);  /* Changed from 4vw */
+            border-radius: 5vw;  /* Changed from 10vw */
+            left: -2vw;  /* Changed from -4vw */
+            bottom: 2vw;  /* Changed from 4vw */
+            background-color: var(--bg-color);
+            box-shadow: 0 3vw 0 var(--main-color);  /* Changed from 0 6vw 0 */
+            transition: 0.3s;
+        }
+
+        .toggle:checked + .slider {
+            background-color: var(--input-focus);
+        }
+
+        .toggle:checked + .slider:before {
+            transform: translateX(30vw);  /* Changed from 60vw */
+        }
+    </style>
+</head>
+<body>
+<label class="switch">
+    <input class="toggle" type="checkbox" id="switch" onchange="toggleSwitch()">
+    <span class="slider"></span>
+    <span class="card-side"></span>
+</label>
+
+<script type="text/javascript">
+
+
+    function toggleSwitch() {
+        var isChecked = document.getElementById('switch').checked;
+        var status = isChecked ? 'ON' : 'OFF';
+        Android.saveSwitchState(status);
+        Android.onSwitchChanged(status);
+    }
+
+    function setSwitchState(status) {
+        var isChecked = (status === 'ON');
+        document.getElementById('switch').checked = isChecked;
+    }
+</script>
+</body>
+</html>

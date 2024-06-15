@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            animation: backgroundChange 2s ease-in-out infinite;
+        }
+
+        .loader {
+            width: 192px;
+            height: 192px;
+            position: relative;
+        }
+
+        .loader:before {
+            content: '';
+            width: 192px;
+            height: 20px;
+            background: #e8e8e8;
+            position: absolute;
+            top: 240px;
+            left: 0;
+            border-radius: 50%;
+            animation: shadow324 0.5s linear infinite;
+        }
+
+        .loader:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: #768A11;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 16px;
+            animation: jump7456 0.5s linear infinite;
+        }
+
+        @keyframes jump7456 {
+            15% {
+                border-bottom-right-radius: 12px;
+            }
+
+            25% {
+                transform: translateY(36px) rotate(22.5deg);
+            }
+
+            50% {
+                transform: translateY(72px) scale(1, .9) rotate(45deg);
+                border-bottom-right-radius: 160px;
+            }
+
+            75% {
+                transform: translateY(36px) rotate(67.5deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(90deg);
+            }
+        }
+
+        @keyframes shadow324 {
+            0%, 100% {
+                transform: scale(1, 1);
+            }
+
+            50% {
+                transform: scale(1.2, 1);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="loader"></div>
+</body>
+</html>

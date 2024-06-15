@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background: #E9DFD1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .loader {
+            width: 45px;
+            aspect-ratio: 1;
+            background:
+                linear-gradient(#0000 calc(1*100%/6),#000 0 calc(3*100%/6),#0000 0) left   bottom,
+                linear-gradient(#0000 calc(2*100%/6),#000 0 calc(4*100%/6),#0000 0) center bottom,
+                linear-gradient(#0000 calc(3*100%/6),#000 0 calc(5*100%/6),#0000 0) right  bottom;
+            background-size: 20% 600%;
+            background-repeat: no-repeat;
+            animation: l3 1s infinite linear;
+            transform: scale(2); /* 放大元素 */
+        }
+
+        @keyframes l3 {
+            100% {background-position: left top,center top,right top }
+        }
+
+    </style>
+</head>
+<body>
+<div class="loader"></div>
+</body>
+</html>
