@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:my="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MyActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="217dp"
+        android:background="@drawable/commom_top"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints">
+        <ImageView
+            android:id="@+id/setting_back"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="290dp"
+            android:layout_marginBottom="130dp"
+            android:background="#2EB3E8"
+            app:srcCompat="@drawable/version_back" />
+
+        <ImageView
+            android:id="@+id/h_back"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <ImageView
+            android:id="@+id/h_head"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="67dp"
+            android:layout_marginEnd="144dp"
+            android:layout_marginRight="144dp"
+            android:background="@drawable/my_user_default" />
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="394dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <com.tom.npm.nav_bar
+            android:id="@+id/help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector"
+            my:hint="帮助"
+            my:hintTextColor="#000000"
+            my:icon="@mipmap/product_part2_icon"></com.tom.npm.nav_bar>
+
+        <com.tom.npm.nav_bar
+            android:id="@+id/about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector"
+            my:hint="关于"
+            my:hintTextColor="#000000"
+            my:icon="@mipmap/my_reward_manage"></com.tom.npm.nav_bar>
+
+        <com.tom.npm.nav_bar
+            android:id="@+id/cards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/selector"
+            my:hint="卡片"
+            my:hintTextColor="#000000"
+            my:icon="@mipmap/my_asset_manage"></com.tom.npm.nav_bar>
+    </LinearLayout>
+
+
+</LinearLayout>

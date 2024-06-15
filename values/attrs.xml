@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable  name="inputview">
+        <!--图片-->
+        <attr name="input_icon" format="reference"></attr>
+        <!--字体-->
+        <attr name="input_hint" format="string"></attr>
+        <!--是否密文-->
+        <attr name="is_pass" format="boolean"></attr>
+    </declare-styleable>
+
+
+        <declare-styleable name="nav">
+            <attr name="icon" format="reference" />
+            <attr name="hint" format="string" />
+            <attr name="hintTextSize" format="dimension" />
+            <attr name="right_icon" format="reference" />
+        </declare-styleable>
+
+
+</resources>

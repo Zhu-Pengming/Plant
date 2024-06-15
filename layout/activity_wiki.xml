@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WikiActivity">
+
+
+    <WebView
+        android:id="@+id/webViewWiki"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="25dp"></WebView>
+
+    <Button
+        android:id="@+id/wiki_return"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="244dp"
+        android:layout_marginBottom="30dp"
+        android:text="返回"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"></Button>
+
+    <View
+        android:id="@+id/wiki_line"
+        android:layout_width="324dp"
+        android:layout_height="3dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="140dp"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/wiki_line1"
+        android:layout_width="324dp"
+        android:layout_height="3dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="670dp"
+        android:background="@color/black" />
+
+    <WebView
+        android:id="@+id/wiki_play"
+        android:layout_width="110dp"
+        android:layout_height="75dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="35dp"></WebView>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="680dp"
+        app:srcCompat="@drawable/baike_logo" />
+
+    <WebView
+        android:id="@+id/wiki_content"
+        android:layout_width="370dp"
+        android:layout_height="460dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="200dp" />
+
+</RelativeLayout>
